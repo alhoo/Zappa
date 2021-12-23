@@ -1,5 +1,6 @@
 import dash
 from dash import html
+from flask_compress import Compress
 
 dapp = dash.Dash(__name__)
 dapp.layout = html.Div(
@@ -13,7 +14,8 @@ dapp.layout = html.Div(
     ],
 )
 
-app = dapp.server.wsgi_app
+app = dapp.server
+Compress(app)
 
 if __name__ == "__main__":
     dapp.run_server()
